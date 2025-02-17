@@ -1,0 +1,57 @@
+{
+    "GPT_SoVITS_filepath": {
+        "description": "(必填)GPT_SoVITS 里 api_v2 的根目录。root filepath of api_v2",
+        "type": "string",
+        "hint": "",
+        "default": "",
+        "obvious_hint": true
+    },
+    
+    "GPT_Path": {
+        "description": "(必填)model path of GPT '淦，小心属性->安全那里直接复制路径第一个字符有脏东西'",
+        "type": "string",
+        "hint": "",
+        "default": "",
+        "obvious_hint": true
+    },
+
+    "Sovits_Path": {
+        "description": "(必填)model path of SoVITS",
+        "type": "string",
+        "hint": "",
+        "default": "",
+        "obvious_hint": true
+    },
+
+    "text_lang": {
+        "description": "()en, zh, 到时再完善",
+        "type": "string",
+        "hint": "",
+        "default": "zh",
+        "obvious_hint": true
+    },
+
+    "ref_audio_path": {
+        "description": "(必填)参考音频路径",
+        "type": "string",
+        "hint": "",
+        "default": "",
+        "obvious_hint": true
+    },
+
+    "prompt_text": {
+        "description": "(必填)参考音频文字",
+        "type": "string",
+        "hint": "",
+        "default": "",
+        "obvious_hint": true
+    },
+
+    "prompt_lang": {
+        "description": "()参考音频语言",
+        "type": "string",
+        "hint": "",
+        "default": "zh",
+        "obvious_hint": true
+    }
+}
