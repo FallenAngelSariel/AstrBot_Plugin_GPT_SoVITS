@@ -13,12 +13,8 @@ class GPTSOVITS_apiv2:
     def __init__(self):
         main_dir = os.path.dirname(os.path.abspath(__file__))
         self.voicepath = os.path.join(main_dir, r"Voice")
-
-#        self.text_lang = "zh"
-#        self.ref_audio_path = os.path.join(main_dir, r"references\【激动】为你献上！让世界热闹起来吧！.wav")
         self.aux_ref_audio_paths = []  # may be some errors directly use, be careful of url
-#        self.prompt_text = "为你献上！让世界热闹起来吧！"
-#        self.prompt_lang = "zh"
+
         # available choice
         self.top_k = 5
         self.top_p = 1

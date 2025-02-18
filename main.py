@@ -33,21 +33,20 @@ class MyPlugin(Star):
             self.config_flag = True
     
     @filter.on_decorating_result()
+    @filter.command("h")
     async def on_decorating_result(self, event:AstrMessageEvent):
-        message_str = event.message_str
-        if message_str[0] == 'h':
-            # get and process bot message
-            result = event.get_result()
-            self.text = result.get_plain_text()
-            cleaned_text = self.remove_complex_emoticons(self.text)
-            # tts, send voice
-            if self.config_flag:
-                if not cleaned_text.strip():
-                    cleaned_text = "字符串是空的哦"
-                audio_output_path = self.api.tts(cleaned_text,self.text_lang,self.ref_audio_path,self.prompt_text,self.prompt_lang)
-                voice = MessageChain()
-                voice.chain.append(Record(audio_output_path))
-                await event.send(voice)
+        # get and process bot message
+        result = event.get_result()
+        self.text = result.get_plain_text()
+        cleaned_text = self.remove_complex_emoticons(self.text)
+        # tts, send voice
+        if self.config_flag:
+            if not cleaned_text.strip():
+                cleaned_text = "字符串是空的哦"
+            audio_output_path = self.api.tts(cleaned_text,self.text_lang,self.ref_audio_path,self.prompt_text,self.prompt_lang)
+            voice = MessageChain()
+            voice.chain.append(Record(audio_output_path))
+            await event.send(voice)
         
     def remove_complex_emoticons(self,text):
         pattern = r"""
