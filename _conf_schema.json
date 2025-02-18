@@ -8,7 +8,7 @@
     },
     
     "GPT_Path": {
-        "description": "(必填)model path of GPT '淦，小心属性->安全那里直接复制路径第一个字符有脏东西'",
+        "description": "(必填)model path of GPT",
         "type": "string",
         "hint": "",
         "default": "",
