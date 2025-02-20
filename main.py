@@ -15,7 +15,6 @@ class MyPlugin(Star):
         self.config = config
         self.GPT_SoVITS_filepath = config.get("GPT_SoVITS_filepath", "")
         self.GPT_Path = config.get("GPT_Path", "")
-        logger.info(self.GPT_Path)
         self.Sovits_Path = config.get("Sovits_Path", "")
         self.text_lang = config.get("text_lang", "")
         self.ref_audio_path = config.get("ref_audio_path", "")
@@ -31,9 +30,20 @@ class MyPlugin(Star):
             self.api.Open_GPTSOVITS_apiv2(self.GPT_SoVITS_filepath)
             self.api.GPTSOVITS_SetModel(self.GPT_Path, self.Sovits_Path)
             self.config_flag = True
-    
+
+    @filter.command("cvt")
+    async def tts(self, event:AstrMessageEvent):
+        message_str = event.message_str
+        clean_text = re.sub("^cvt","",message_str)
+        if self.config_flag:
+            if not message_str.strip():
+                message_str = "empty string"
+            voice_output_path = self.api.tts(message_str,self.text_lang,self.ref_audio_path,self.prompt_text,self.prompt_lang)
+            voice = MessageChain()
+            voice.chain.append(Record(voice_output_path))
+            await event.send(voice)
+
     @filter.on_decorating_result()
-#    @filter.command("h")
     async def on_decorating_result(self, event:AstrMessageEvent):
         message_str = event.message_str
         if message_str[0] == 'h':
@@ -45,9 +55,9 @@ class MyPlugin(Star):
             if self.config_flag:
                 if not cleaned_text.strip():
                     cleaned_text = "字符串是空的哦"
-                audio_output_path = self.api.tts(cleaned_text,self.text_lang,self.ref_audio_path,self.prompt_text,self.prompt_lang)
+                voice_output_path = self.api.tts(cleaned_text,self.text_lang,self.ref_audio_path,self.prompt_text,self.prompt_lang)
                 voice = MessageChain()
-                voice.chain.append(Record(audio_output_path))
+                voice.chain.append(Record(voice_output_path))
                 await event.send(voice)
         
     def remove_complex_emoticons(self,text):

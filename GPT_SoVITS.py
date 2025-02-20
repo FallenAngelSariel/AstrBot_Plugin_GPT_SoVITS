@@ -19,7 +19,7 @@ class GPTSOVITS_apiv2:
         self.top_k = 5
         self.top_p = 1
         self.temperature = 1.3
-        self.Text_Split_Method = "cut1"
+        self.Text_Split_Method = "cut5"
         self.speed_factor = 1.0
         self.streaming_mode = False
         self.seed = -1
@@ -40,10 +40,9 @@ class GPTSOVITS_apiv2:
     def Open_GPTSOVITS_apiv2(self, GPT_SoVITS_filepath):
         if not self.is_GPTSOVITS_apiv2_running("python.exe", "api_v2.py"):
             os.system(f'start cmd /k "cd {GPT_SoVITS_filepath} && .\\runtime\\python.exe api_v2.py"')
-            time.sleep(1)
+            time.sleep(15)
             if self.is_GPTSOVITS_apiv2_running("python.exe", "api_v2.py"):
                 logger.debug("successfully open GPT-SOVITS api_v2")
-                time.sleep(15)
                 return
             logger.error("fail to open GPT-SOVITS api_v2")
         else:

@@ -9,3 +9,9 @@
 
 目前只支持中文，英文和符号会被删掉，不想过滤英文前面cleaned_text改掉就好，不过讲英文和符号会变得非常丑陋
 
+Language dictionary:
+'zh': Chinese
+'ja': Japanese
+'en': English
+'ko': Korean
+'yue': Cantonese
